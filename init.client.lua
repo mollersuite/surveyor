@@ -34,7 +34,9 @@ local function offset (class)
   while not reflection.ExplorerImageIndex do
     local dump = get(classes, class)
     wait()
-    print(reflection.Superclass)
+    if dump.Superclass == 'Instance' then
+    	return ReflectionMetadata[dump.Superclass].ExplorerImageIndex or 0
+    end
     if dump.Superclass == '<<<ROOT>>>' then
       return 0
     end
