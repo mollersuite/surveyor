@@ -51,17 +51,25 @@ end
 local gui = game:GetObjects('rbxassetid://6887517279')[1]
 gui.Name = game:GetService('HttpService'):GenerateGUID()
 gui.Parent = game:GetService('CoreGui')
+gui.Main.ClipsDescendants = true
 
 local entry = gui.Entry
 entry.Parent = nil
 entry.icon.Image = icons
 
+local function addto (v, parent)
+	local entry = entry:Clone()
+	entry.name.Text = v.Name
+	entry.Visible = true
+	entry.icon.ImageRectOffset = Vector2.new(offset(v.ClassName), 0) * 16
+	entry.Parent = parent
+	v:GetPropertyChangedSignal('Name'):Connect(function ()
+		entry.name.Text = v.Name
+	end)
+end
+
 for _,v in pairs(game:GetChildren()) do
   coroutine.wrap(function ()
-	  local entry = entry:Clone()
-	  entry.name.Text = v.Name
-	  entry.Visible = true
-	  entry.icon.ImageRectOffset = Vector2.new(offset(v.ClassName), 0) * 16
-	  entry.Parent = gui.Main
+	addto(v,gui.Main)
   end)()
 end
