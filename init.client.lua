@@ -27,13 +27,13 @@ local function get (data, class)
 end
 
 local function offset (class)
-  local reflection = get(ReflectionMetadata,class)
+  local reflection = ReflectionMetadata[class]
   if reflection.ExplorerImageIndex then
     return reflection.ExplorerImageIndex
   end
   while not reflection.ExplorerImageIndex do
-  	wait()
     local dump = get(classes, class)
+    wait()
     if dump.Superclass == '<<<ROOT>>>' then
       return 0
     end
