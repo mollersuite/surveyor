@@ -41,7 +41,7 @@ local function offset (class)
   return 0
 end
 
-local gui = game:GetObjects('6887517279')[1]
+local gui = game:GetObjects('rbxassetid://6887517279')[1]
 gui.Name = game:GetService('HttpService'):GenerateGUID()
 gui.Parent = game:GetService('CoreGui')
 
