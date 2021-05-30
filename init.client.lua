@@ -33,6 +33,9 @@ local function offset (class)
   end
   while not (reflection or {}).ExplorerImageIndex do
     local dump = get(classes, class)
+    if not dump then
+    	return 0
+    end
     wait()
     if dump.Superclass == 'Instance' then
     	return (ReflectionMetadata[dump.Superclass] or {}).ExplorerImageIndex or 0
@@ -54,9 +57,11 @@ entry.Parent = nil
 entry.icon.Image = icons
 
 for _,v in pairs(game:GetChildren()) do
-  local entry = entry:Clone()
-  entry.name.Text = v.Name
-  entry.Visible = true
-  entry.icon.ImageRectOffset = Vector2.new(offset(v.ClassName), 0) * 16
-  entry.Parent = gui.Main
+  coroutine.wrap(function ()
+	  local entry = entry:Clone()
+	  entry.name.Text = v.Name
+	  entry.Visible = true
+	  entry.icon.ImageRectOffset = Vector2.new(offset(v.ClassName), 0) * 16
+	  entry.Parent = gui.Main
+  end)()
 end
