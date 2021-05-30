@@ -32,6 +32,7 @@ local function offset (class)
     return reflection.ExplorerImageIndex
   end
   while not reflection.ExplorerImageIndex do
+  	wait()
     local dump = get(classes, class)
     if dump.Superclass == '<<<ROOT>>>' then
       return 0
@@ -52,6 +53,7 @@ entry.icon.Image = icons
 for _,v in pairs(game:GetChildren()) do
   local entry = entry:Clone()
   entry.name.Text = v.Name
+  entry.Visible = true
   entry.icon.ImageRectOffset = Vector2.new(offset(v.ClassName), 0) * 16
   entry.Parent = gui.Main
 end
