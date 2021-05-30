@@ -52,6 +52,6 @@ entry.icon.Image = icons
 for _,v in pairs(game:GetChildren()) do
   local entry = entry:Clone()
   entry.name.Text = v.Name
-  entry.icon.ImageRectOffect = Vector2.new(offset(v.ClassName), 0) * 16
+  entry.icon.ImageRectOffset = Vector2.new(offset(v.ClassName), 0) * 16
   entry.Parent = gui.Main
 end
