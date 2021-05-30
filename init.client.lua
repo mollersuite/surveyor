@@ -15,9 +15,8 @@ local function loadCustomAsset(url,filename,reusable)
 end
 
 local icons = loadCustomAsset("https://mollersuite.github.io/surveyor/ClassImages.png","vanillaicons.png",true)
-local api = require(game:GetObjects('rbxassetid://4711528349')[1])
-local ReflectionMetadata = api.ReflectionMetadata.Classes
-local classes = game:GetService('HttpService'):JSONDecode(game:HttpGet('https://raw.githubusercontent.com/CloneTrooper1019/Roblox-Client-Tracker/roblox/API-Dump.json', true))
+local ReflectionMetadata = game:GetService('HttpService'):JSONDecode(game:HttpGet('https://mollersuite.github.io/surveyor/reflection.json', true))[1].Classes
+local classes = game:GetService('HttpService'):JSONDecode(game:HttpGet('https://raw.githubusercontent.com/CloneTrooper1019/Roblox-Client-Tracker/roblox/API-Dump.json', true)).Classes
 
 local function get (data, class)
   for _,v in pairs(data) do
