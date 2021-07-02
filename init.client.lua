@@ -1,7 +1,7 @@
-if not getcustomasset then
+if not getcustomasset and not getsynasset then
   game:GetService('StarterGui'):SetCore("SendNotification",  {
     Title = "Error";
-    Text = "Your exploit does not support getcustomasset. Try using Fluxus or Script-Ware.";
+    Text = "Your exploit does not support getcustomasset/getsynasset. Try using Script-Ware, Fluxus, or Synapse X.";
     Duration = 5;
   })
 end
@@ -11,7 +11,7 @@ local function loadCustomAsset(url,filename,reusable)
   local data = game:HttpGet(url)
   writefile(filename,data)
 
-  return getcustomasset(filename,reusable)
+  return (getcustomasset or getsynasset)(filename,reusable)
 end
 
 local icons = loadCustomAsset("https://mollersuite.github.io/surveyor/ClassImages.png","vanillaicons.png",true)
